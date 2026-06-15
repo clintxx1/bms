@@ -311,3 +311,149 @@ export const supplySummary = {
   fullyReceived: 1,
   totalValue: 31800,
 };
+
+/* ----------------------- User Management page data ---------------------- */
+
+export interface Permission {
+  id: string;
+  code: string;
+  label: string;
+  description: string;
+}
+
+export const permissions: Permission[] = [
+  {
+    id: "admin-admin",
+    code: "admin:admin",
+    label: "Admin privilege",
+    description: "Allows admin only access",
+  },
+  {
+    id: "contract-create",
+    code: "contract:create",
+    label: "Create contract",
+    description: "Allows user to create a contract",
+  },
+  {
+    id: "contract-delete",
+    code: "contract:delete",
+    label: "Delete contract",
+    description: "Allows user to delete a contract",
+  },
+  {
+    id: "contract-update",
+    code: "contract:update",
+    label: "Update contract",
+    description: "Allows user to update a contract",
+  },
+  {
+    id: "contract-view",
+    code: "contract:view",
+    label: "View contracts",
+    description: "Allows user to access contractor's contract & payments",
+  },
+  {
+    id: "contractor-create",
+    code: "contractor:create",
+    label: "Create contractor",
+    description: "Allows user to create contractor",
+  },
+  {
+    id: "contractor-delete",
+    code: "contractor:delete",
+    label: "Delete contractor",
+    description: "Allows user to delete contractor",
+  },
+  {
+    id: "contractor-print",
+    code: "contractor:print",
+    label: "Print contractor",
+    description: "Allows user to update contractor",
+  },
+  {
+    id: "contractor-update",
+    code: "contractor:update",
+    label: "Update contractor",
+    description: "Allows user to update contractor",
+  },
+  {
+    id: "contractor-view",
+    code: "contractor:view",
+    label: "View contractor",
+    description: "Allows user to view contractor page",
+  },
+];
+
+export interface Role {
+  id: string;
+  name: string;
+  description: string;
+  users: number;
+}
+
+export const roles: Role[] = [
+  {
+    id: "admin",
+    name: "Admin",
+    description: "Full access to all features and settings",
+    users: 2,
+  },
+  {
+    id: "manager",
+    name: "Project Manager",
+    description: "Can manage projects, contracts, and payments",
+    users: 5,
+  },
+  {
+    id: "viewer",
+    name: "Viewer",
+    description: "Read-only access to projects and reports",
+    users: 8,
+  },
+];
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: "active" | "inactive";
+}
+
+export const users: User[] = [
+  {
+    id: "1",
+    name: "Gabriel Montoya",
+    email: "gabriel@bms.com",
+    role: "Admin",
+    status: "active",
+  },
+  {
+    id: "2",
+    name: "Maria Santos",
+    email: "maria@bms.com",
+    role: "Project Manager",
+    status: "active",
+  },
+  {
+    id: "3",
+    name: "John Doe",
+    email: "john@bms.com",
+    role: "Viewer",
+    status: "active",
+  },
+  {
+    id: "4",
+    name: "Jane Smith",
+    email: "jane@bms.com",
+    role: "Project Manager",
+    status: "inactive",
+  },
+  {
+    id: "5",
+    name: "Robert Johnson",
+    email: "robert@bms.com",
+    role: "Viewer",
+    status: "active",
+  },
+];
