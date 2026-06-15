@@ -315,112 +315,82 @@ export const supplySummary = {
 /* ----------------------- User Management page data ---------------------- */
 
 export interface Permission {
-  id: string;
+  /** Canonical key, `feature:action` — used everywhere a permission is referenced. */
   code: string;
   label: string;
   description: string;
 }
 
 export const permissions: Permission[] = [
-  {
-    id: "admin-admin",
-    code: "admin:admin",
-    label: "Admin privilege",
-    description: "Allows admin only access",
-  },
-  {
-    id: "contract-create",
-    code: "contract:create",
-    label: "Create contract",
-    description: "Allows user to create a contract",
-  },
-  {
-    id: "contract-delete",
-    code: "contract:delete",
-    label: "Delete contract",
-    description: "Allows user to delete a contract",
-  },
-  {
-    id: "contract-update",
-    code: "contract:update",
-    label: "Update contract",
-    description: "Allows user to update a contract",
-  },
-  {
-    id: "contract-view",
-    code: "contract:view",
-    label: "View contracts",
-    description: "Allows user to access contractor's contract & payments",
-  },
-  {
-    id: "contractor-create",
-    code: "contractor:create",
-    label: "Create contractor",
-    description: "Allows user to create contractor",
-  },
-  {
-    id: "contractor-delete",
-    code: "contractor:delete",
-    label: "Delete contractor",
-    description: "Allows user to delete contractor",
-  },
-  {
-    id: "contractor-print",
-    code: "contractor:print",
-    label: "Print contractor",
-    description: "Allows user to update contractor",
-  },
-  {
-    id: "contractor-update",
-    code: "contractor:update",
-    label: "Update contractor",
-    description: "Allows user to update contractor",
-  },
-  {
-    id: "contractor-view",
-    code: "contractor:view",
-    label: "View contractor",
-    description: "Allows user to view contractor page",
-  },
+  { code: "admin:admin", label: "Admin privilege", description: "Full administrative access" },
+
+  { code: "user:create", label: "Create user", description: "Allows creating users" },
+  { code: "user:view", label: "View users", description: "Allows viewing users" },
+
+  { code: "project:view", label: "View projects", description: "Allows viewing projects" },
+  { code: "project:create", label: "Create project", description: "Allows creating projects" },
+  { code: "project:update", label: "Update project", description: "Allows editing projects" },
+  { code: "project:print", label: "Print project", description: "Allows printing project reports" },
+
+  { code: "contractor:view", label: "View contractor", description: "Allows viewing the contractor page" },
+  { code: "contractor:create", label: "Create contractor", description: "Allows creating contractors" },
+  { code: "contractor:update", label: "Update contractor", description: "Allows editing contractors" },
+  { code: "contractor:delete", label: "Delete contractor", description: "Allows deleting contractors" },
+  { code: "contractor:print", label: "Print contractor", description: "Allows printing contractor vouchers" },
+
+  { code: "contract:view", label: "View contracts", description: "Allows viewing contracts & payments" },
+  { code: "contract:create", label: "Create contract", description: "Allows creating contracts" },
+  { code: "contract:update", label: "Update contract", description: "Allows editing contracts" },
+  { code: "contract:delete", label: "Delete contract", description: "Allows deleting contracts" },
+
+  { code: "payment:view", label: "View payments", description: "Allows viewing payments" },
+  { code: "payment:print", label: "Print payment", description: "Allows printing payment vouchers" },
+
+  { code: "variance:create", label: "Create variance", description: "Allows adding variation orders" },
 ];
 
 export interface Role {
   id: string;
   name: string;
   description?: string;
+  /** Permission codes (must exist in `permissions`). */
   permissions: string[];
   users: number;
+  /** Built-in role — protected from deletion. */
+  system?: boolean;
 }
 
 export const roles: Role[] = [
   {
     id: "admin",
     name: "admin",
-    permissions: ["user-create", "user-view", "variance-create"],
+    permissions: ["admin:admin", "user:create", "user:view", "variance:create"],
     users: 2,
+    system: true,
   },
   {
     id: "default",
     name: "default",
-    permissions: ["project-view", "contractor-view", "contractor-print"],
+    permissions: ["project:view", "contractor:view", "contractor:print"],
     users: 1,
+    system: true,
   },
   {
     id: "project-manager",
     name: "Project Manager",
-    permissions: ["project-create", "project-print", "project-update"],
+    permissions: ["project:create", "project:print", "project:update", "project:view"],
     users: 0,
   },
   {
     id: "printing-staff",
     name: "Printing Staff",
-    permissions: ["contractor-print", "contractor-view", "payment-print"],
+    permissions: ["contractor:print", "contractor:view", "payment:print"],
     users: 0,
   },
   {
     id: "staff",
     name: "Staff",
-    permissions: ["contract-view", "payment-view", "project-view"],
+    permissions: ["contract:view", "payment:view", "project:view"],
     users: 0,
   },
 ];
