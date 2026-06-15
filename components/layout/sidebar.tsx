@@ -31,7 +31,9 @@ const overview: NavItem[] = [
   { label: "Profile", icon: UserRound },
 ];
 
-const admin: NavItem[] = [{ label: "User Management", icon: Users2 }];
+const admin: NavItem[] = [
+  { label: "User Management", icon: Users2, href: "/user-management" },
+];
 
 function NavLink({ item, pathname }: { item: NavItem; pathname: string }) {
   const Icon = item.icon;
