@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    /* #2563EB — Tailwind blue-600 */
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground antialiased;
+    background-color: #f6f8fb;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+/* App canvas backdrop — subtle slate */
+.app-canvas {
+  background:
+    radial-gradient(900px circle at 100% 0%, rgba(37, 99, 235, 0.05), transparent 45%),
+    #f6f8fb;
+}
+
+/* Hero banner gradient (matches the new layout's blue banner) */
+.bms-hero {
+  background-image: linear-gradient(120deg, #2563eb 0%, #3b76f0 52%, #4f8bf5 100%);
+}
+
+/* Thin custom scrollbars inside scroll regions */
+.bms-scroll::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.bms-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.bms-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
