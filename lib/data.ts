@@ -387,28 +387,41 @@ export const permissions: Permission[] = [
 export interface Role {
   id: string;
   name: string;
-  description: string;
+  description?: string;
+  permissions: string[];
   users: number;
 }
 
 export const roles: Role[] = [
   {
     id: "admin",
-    name: "Admin",
-    description: "Full access to all features and settings",
+    name: "admin",
+    permissions: ["user-create", "user-view", "variance-create"],
     users: 2,
   },
   {
-    id: "manager",
-    name: "Project Manager",
-    description: "Can manage projects, contracts, and payments",
-    users: 5,
+    id: "default",
+    name: "default",
+    permissions: ["project-view", "contractor-view", "contractor-print"],
+    users: 1,
   },
   {
-    id: "viewer",
-    name: "Viewer",
-    description: "Read-only access to projects and reports",
-    users: 8,
+    id: "project-manager",
+    name: "Project Manager",
+    permissions: ["project-create", "project-print", "project-update"],
+    users: 0,
+  },
+  {
+    id: "printing-staff",
+    name: "Printing Staff",
+    permissions: ["contractor-print", "contractor-view", "payment-print"],
+    users: 0,
+  },
+  {
+    id: "staff",
+    name: "Staff",
+    permissions: ["contract-view", "payment-view", "project-view"],
+    users: 0,
   },
 ];
 
@@ -423,37 +436,23 @@ export interface User {
 export const users: User[] = [
   {
     id: "1",
-    name: "Gabriel Montoya",
-    email: "gabriel@bms.com",
-    role: "Admin",
+    name: "Administrator",
+    email: "marjorie@bms.com",
+    role: "admin",
     status: "active",
   },
   {
     id: "2",
-    name: "Maria Santos",
-    email: "maria@bms.com",
-    role: "Project Manager",
+    name: "B",
+    email: "b@buddy.com",
+    role: "default",
     status: "active",
   },
   {
     id: "3",
-    name: "John Doe",
-    email: "john@bms.com",
-    role: "Viewer",
-    status: "active",
-  },
-  {
-    id: "4",
-    name: "Jane Smith",
-    email: "jane@bms.com",
-    role: "Project Manager",
-    status: "inactive",
-  },
-  {
-    id: "5",
-    name: "Robert Johnson",
-    email: "robert@bms.com",
-    role: "Viewer",
+    name: "guest",
+    email: "guestuser@gmail.com",
+    role: "admin",
     status: "active",
   },
 ];
